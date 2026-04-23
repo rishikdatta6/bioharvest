@@ -1,0 +1,136 @@
+﻿
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    font-family: Arial;
+    background-image: url("../assets/images/gray-floral.png"), /* pattern FIRST */
+    linear-gradient(135deg, #e6e6fa, #d0f0c0); /* gradient BELOW */
+
+    background-size: 180px, /* pattern size (IMPORTANT) */
+    cover;
+    background-repeat: repeat, no-repeat;
+    background-blend-mode: multiply; /* 🔥 THIS IS KEY */
+
+    min-height: 100vh;
+    text-align: center;
+}
+h1 {
+    color: #2e7d32;
+    font-weight: bold;
+}
+.card-container {
+    display: flex;
+    justify-content: center; /* FIX */
+    gap: 60px; /* spacing */
+    margin-top: 50px;
+    flex-wrap: wrap; /* responsive */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 280px;
+    width:320px;
+    padding: 25px;
+}
+.card:hover {
+        transform: translateY(-6px);
+        transition: 0.3s ease;
+ }
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+    .input-group label {
+        font-size: 14px;
+        margin-bottom: 4px;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+.button-container {
+    margin-top: 30px;
+}
+
+button {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+ button:hover {
+        transform: scale(1.05);
+}
+
+.result {
+    margin-top: 30px;
+}
+
+.status-box {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 16px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.safe-bg {
+    background: #2ecc71;
+}
+
+.caution-bg {
+    background: #f39c12;
+}
+
+.delay-bg {
+    background: #e74c3c;
+}
+.soil {
+    background: #e8f5e9;
+}
+
+.aqi {
+    background: #e3f2fd;
+}
+
+.weather {
+    background: #fff3e0;
+}
+
+.riskCard {
+    background: #fffbeb;
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
+
+
+.predictionCard {
+    background: #eff6ff;
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
