@@ -13,7 +13,7 @@ function Login() {
 
         try {
            
-
+           // For auth change
             const res = await fetch("https://bioharvest-api-rishik-dregeghfhcdfdnfu.centralindia-01.azurewebsites.net/api/Auth/login", {
                 method: "POST",
                 headers: {
