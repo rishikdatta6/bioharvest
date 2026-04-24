@@ -77,7 +77,7 @@ namespace BioHarvest.Api.Controllers
 
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 token=WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-                var resetLink = $"https://bioharvest-cyan.vercel.app/reset-password?token={Uri.EscapeDataString(token)}&email={model.Email}";
+                var resetLink = $"https://bioharvest-phi.vercel.app/reset-password?token={Uri.EscapeDataString(token)}&email={model.Email}";
 
                 await _emailService.SendEmail(
                     model.Email,
