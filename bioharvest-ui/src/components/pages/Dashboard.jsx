@@ -178,7 +178,7 @@ function Dashboard() {
         try {
            
             const response = await fetch(
-                "https://bioharvest-phi.vercel.app/api/Harvest/evaluate",
+                "https://bioharvest-api-rishik-dregeghfhcdfdnfu.centralindia-01.azurewebsites.net/api/Harvest/evaluate",
                 {
                     method: "POST",
                     headers: {
