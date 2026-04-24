@@ -13,7 +13,7 @@ function Register() {
         setSuccess("");
 
         try {
-            const res = await fetch("/api/Auth/register", {
+            const res = await fetch("https://bioharvest-api-rishik-dregeghfhcdfdnfu.centralindia-01.azurewebsites.net/api/Auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password })

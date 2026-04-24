@@ -11,7 +11,7 @@ function ResetPassword() {
         const email = params.get("email");
         const cleanToken = token?.replace(/ /g, "+");
 
-        const res = await fetch("/api/Auth/reset-password", {
+        const res = await fetch("https://bioharvest-api-rishik-dregeghfhcdfdnfu.centralindia-01.azurewebsites.net/api/Auth/reset-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email,token:cleanToken,newPassword:password })
