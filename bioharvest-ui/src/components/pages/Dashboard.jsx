@@ -178,7 +178,7 @@ function Dashboard() {
         try {
            
             const response = await fetch(
-                "http://localhost:5046/api/Harvest/evaluate",
+                "https://bioharvest-cyan.vercel.app/api/Harvest/evaluate",
                 {
                     method: "POST",
                     headers: {
