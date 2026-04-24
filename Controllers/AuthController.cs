@@ -22,24 +22,47 @@ namespace BioHarvest.Api.Controllers
             _emailService = emailService;
         }
       
+        //[HttpPost("register")]
+        //public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        //{
+        //    var user = new AppUser
+        //    {
+        //        UserName = model.Email,
+        //        Email = model.Email,
+        //        Name = model.Name
+        //    };
+
+        //    var result = await _userManager.CreateAsync(user, model.Password);
+
+        //    if (!result.Succeeded)
+        //        return BadRequest(result.Errors);
+
+        //    return Ok(new { message = "User registered" });
+        //}
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var user = new AppUser
+            try
             {
-                UserName = model.Email,
-                Email = model.Email,
-                Name = model.Name
-            };
+                var user = new AppUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name = model.Name
+                };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
 
-            if (!result.Succeeded)
-                return BadRequest(result.Errors);
+                if (!result.Succeeded)
+                    return BadRequest(result.Errors);
 
-            return Ok(new { message = "User registered" });
+                return Ok(new { message = "User registered" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("ERROR: " + ex.Message); // 🔥 THIS WILL REVEAL ISSUE
+            }
         }
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
