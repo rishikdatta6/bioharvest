@@ -1,4 +1,4 @@
-﻿import { useState,useEffect } from "react";
+import { useState,useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid ,ResponsiveContainer} from "recharts";
 import cbg from "../../assets/images/charts_bg.png"
 function Charts() {

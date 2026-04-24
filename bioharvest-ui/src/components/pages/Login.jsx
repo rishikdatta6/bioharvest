@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -23,8 +23,7 @@ function Login() {
             });
 
             if (!res.ok) {
-                const text = await res.text();
-                console.log(text);
+                const text = await res.text();          
                 setError("Invalid email or password");
                 return;
             }
