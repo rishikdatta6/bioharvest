@@ -178,7 +178,7 @@ function Dashboard() {
         try {
            
             const response = await fetch(
-                "bioharvest-production.up.railway.app/api/Harvest/evaluate",
+                "https://bioharvest-production.up.railway.app/api/Harvest/evaluate",
                 {
                     method: "POST",
                     headers: {
