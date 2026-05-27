@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BioHarvest.Api.Migrations
 {
     [DbContext(typeof(BioHarvestDbContext))]
-    [Migration("20260527061159_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260527062137_InitialPostgres")]
+    partial class InitialPostgres
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
