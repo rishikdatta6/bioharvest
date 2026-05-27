@@ -61,14 +61,14 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 
-
+app.UseCors("AllowReact");
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
 
 
 //app.UseHttpsRedirection();
-app.UseCors("AllowReact");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
