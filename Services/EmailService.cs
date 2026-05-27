@@ -13,7 +13,7 @@ public class EmailService : IEmailService
         var smtp = new SmtpClient("smtp.gmail.com")
         {
             Port = 587,
-            Credentials = new NetworkCredential("rishikdatta6@gmail.com", "kizusprahpwmreuk"),
+            Credentials = new NetworkCredential("rishikdatta6@gmail.com", "erlxnpgdayplueif"),
             EnableSsl = true,
             UseDefaultCredentials=false
         };
