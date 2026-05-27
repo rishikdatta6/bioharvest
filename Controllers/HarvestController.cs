@@ -23,21 +23,27 @@ namespace BioHarvest.Api.Controllers
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost("evaluate")]
-        public ActionResult<HarvestDecision> EvaluateHarvest(
-      [FromBody] HarvestEvaluationRequest request)
+        public ActionResult EvaluateHarvest(
+    [FromBody] HarvestEvaluationRequest request)
         {
-            var decision = _service.EvaluateHarvest(
-                request.Soil,
-                request.Aqi,
-                request.Weather,
-                request.HarvestEvaluationId);
+            try
+            {
+                var decision = _service.EvaluateHarvest(
+                    request.Soil,
+                    request.Aqi,
+                    request.Weather,
+                    request.HarvestEvaluationId);
 
-            _context.HarvestDecisions.Add(decision);
-            _context.SaveChanges();
+                _context.HarvestDecisions.Add(decision);
+                _context.SaveChanges();
 
-
-            return Ok(decision);
+                return Ok(decision);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.ToString());
+            }
         }
-        
+
     }
 }
