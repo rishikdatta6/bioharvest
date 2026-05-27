@@ -30,7 +30,7 @@ namespace BioHarvest.Api.Services
                     Reason = "Hazardous AQI levels detected.",
                     Recommendation = "Avoid harvesting due to severe air pollution.",
                     RiskScore = 95,
-                    DecidedAt = DateTime.Now
+                    DecidedAt = DateTime.UtcNow
                 };
             }
 
@@ -44,7 +44,7 @@ namespace BioHarvest.Api.Services
                     Reason = "Extreme temperature conditions are not suitable for harvesting.",
                     Recommendation = "Wait for moderate temperature conditions.",
                     RiskScore = 85,
-                    DecidedAt = DateTime.Now
+                    DecidedAt = DateTime.UtcNow
                 };
             }
 
@@ -58,7 +58,7 @@ namespace BioHarvest.Api.Services
                     Reason = "Heavy rainfall detected.",
                     Recommendation = "Delay harvesting until rain subsides.",
                     RiskScore = 90,
-                    DecidedAt = DateTime.Now
+                    DecidedAt = DateTime.UtcNow
                 };
             }
 
@@ -72,7 +72,7 @@ namespace BioHarvest.Api.Services
                     Reason = "Excessive humidity may damage crops during harvest.",
                     Recommendation = "Wait for humidity levels to decrease.",
                     RiskScore = 80,
-                    DecidedAt = DateTime.Now
+                    DecidedAt = DateTime.UtcNow
                 };
             }
             if (totalScore >= 80)
@@ -98,7 +98,7 @@ namespace BioHarvest.Api.Services
                 Reason = reason,
                 Recommendation = GetRecommendation(status),
                 RiskScore = 100 - totalScore,
-                DecidedAt = DateTime.Now
+                DecidedAt = DateTime.UtcNow
             };
         }
 
