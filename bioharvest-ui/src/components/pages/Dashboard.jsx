@@ -264,7 +264,7 @@ function Dashboard() {
     return (
         <div className="dashboard">
 
-            <h1>🌱 BioHarvest</h1>
+            <h1>🌱 BioHarvest New</h1>
             <p>Smart Harvest Decision System</p>
 
             {/* 🔥 CITY INPUT */}
