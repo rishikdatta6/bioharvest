@@ -5,8 +5,8 @@ A full-stack crop analytics platform that analyzes soil, AQI, and weather data t
 ## Tech Stack
 
 - Frontend: React (Vercel)
-- Backend: ASP.NET Core Web API (Azure)
-- Database: Azure SQL
+- Backend: ASP.NET Core Web API (Railway)
+- Database: Railway PostgreSQL
 - Auth: JWT + Identity
 
 ## Features
@@ -22,7 +22,7 @@ A full-stack crop analytics platform that analyzes soil, AQI, and weather data t
 🌐 App: https://bioharvest-phi.vercel.app
 
 ## API
-Backend is hosted on Azure App Service and powers authentication, data processing, and analytics.
+Backend is hosted on Railway App and powers authentication, data processing, and analytics.
 
 ## Screenshots
 <img width="2530" height="1390" alt="image" src="https://github.com/user-attachments/assets/7b2cc084-d70e-4f58-9dac-441ed9df5f12"  />
