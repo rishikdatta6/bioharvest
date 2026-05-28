@@ -89,39 +89,35 @@ namespace BioHarvest.Api.Controllers
                 email = user.Email
             });
         }
-        //[HttpPost("forgot-password")]
-        //public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
-        //{
-        //    try
-        //    {
-        //        var user=await  _userManager.FindByEmailAsync(model.Email);
-        //        if (user == null)
-        //            return BadRequest("User not found");
-
-        //        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        //        token=WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-        //        var resetLink = $"https://bioharvest-phi.vercel.app/reset-password?token={Uri.EscapeDataString(token)}&email={model.Email}";
-
-        //        await _emailService.SendEmail(
-        //            model.Email,
-        //            "Reset Password",
-        //            $"Click here to reset: {resetLink}"
-        //        );
-
-
-        //        return Ok("Reset link sent");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest("ERROR: " + ex.Message);
-        //    }
-        //}
 
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
         {
-            return Ok("Forgot password endpoint works");
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                    return BadRequest("User not found");
+
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+                var resetLink = $"https://bioharvest-phi.vercel.app/reset-password?token={Uri.EscapeDataString(token)}&email={model.Email}";
+
+                await _emailService.SendEmail(
+                    model.Email,
+                    "Reset Password",
+                    $"Click here to reset: {resetLink}"
+                );
+
+
+                return Ok("Reset link sent");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("ERROR: " + ex.Message);
+            }
         }
+
 
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)

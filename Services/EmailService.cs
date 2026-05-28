@@ -10,28 +10,44 @@ public class EmailService : IEmailService
 {
     public async Task SendEmail(string to, string subject, string body)
     {
-        var smtp = new SmtpClient("smtp.gmail.com")
+        try
         {
-            Port = 587,
+            Console.WriteLine("STEP 1");
 
-            Credentials = new NetworkCredential(
+            var smtp = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+
+                Credentials = new NetworkCredential(
+                    "rishikdatta6@gmail.com",
+                    "erlxnpgdayplueif"
+                ),
+
+                EnableSsl = true,
+                UseDefaultCredentials = false
+            };
+
+            Console.WriteLine("STEP 2");
+
+            var message = new MailMessage(
                 "rishikdatta6@gmail.com",
-                "erlxnpgdayplueif"
-            ),
+                to,
+                subject,
+                body
+            );
 
-            EnableSsl = true,
-            UseDefaultCredentials = false,
+            Console.WriteLine("STEP 3");
 
-            Timeout = 10000
-        };
+            await smtp.SendMailAsync(message);
 
-        var message = new MailMessage(
-            "rishikdatta6@gmail.com",
-            to,
-            subject,
-            body
-        );
+            Console.WriteLine("EMAIL SENT SUCCESS");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("EMAIL FAILED:");
+            Console.WriteLine(ex.ToString());
 
-        await smtp.SendMailAsync(message);
+            throw;
+        }
     }
 }
