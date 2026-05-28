@@ -1,5 +1,6 @@
-﻿using System.Net;
-using System.Net.Mail;
+﻿using System.Net.Http.Headers;
+using System.Text;
+using Newtonsoft.Json;
 
 public interface IEmailService
 {
@@ -8,46 +9,35 @@ public interface IEmailService
 
 public class EmailService : IEmailService
 {
+    private readonly HttpClient _httpClient = new HttpClient();
+
     public async Task SendEmail(string to, string subject, string body)
     {
-        try
+        _httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                "re_21wmksrh_BJzhhGqR1SJXtBsU2FcsSGyB"
+            );
+
+        var emailData = new
         {
-            Console.WriteLine("START MAIL");
+            from = "onboarding@resend.dev",
+            to = new[] { to },
+            subject = subject,
+            html = $"<p>{body}</p>"
+        };
 
-            var smtp = new SmtpClient("smtp.gmail.com")
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(
-                    "rishikdatta6@gmail.com",
-                    "fpokcgekxrwvmzcd"
-                ),
-                Timeout = 20000
-            };
+        var content = new StringContent(
+            JsonConvert.SerializeObject(emailData),
+            Encoding.UTF8,
+            "application/json"
+        );
 
-            Console.WriteLine("SMTP CREATED");
+        var response = await _httpClient.PostAsync(
+            "https://api.resend.com/emails",
+            content
+        );
 
-            var message = new MailMessage();
-            message.From = new MailAddress("rishikdatta6@gmail.com");
-            message.To.Add(to);
-            message.Subject = subject;
-            message.Body = body;
-
-            Console.WriteLine("SENDING...");
-
-            await smtp.SendMailAsync(message);
-
-            Console.WriteLine("MAIL SENT");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("FULL EMAIL ERROR:");
-            Console.WriteLine(ex.Message);
-            Console.WriteLine(ex.InnerException?.Message);
-            throw;
-        }
+        response.EnsureSuccessStatusCode();
     }
 }
