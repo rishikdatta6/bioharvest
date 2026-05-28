@@ -12,41 +12,41 @@ public class EmailService : IEmailService
     {
         try
         {
-            Console.WriteLine("STEP 1");
+            Console.WriteLine("START MAIL");
 
             var smtp = new SmtpClient("smtp.gmail.com")
             {
+                Host = "smtp.gmail.com",
                 Port = 587,
-
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(
                     "rishikdatta6@gmail.com",
-                    "erlxnpgdayplueif"
+                    "fpokcgekxrwvmzcd"
                 ),
-
-                EnableSsl = true,
-                UseDefaultCredentials = false
+                Timeout = 20000
             };
 
-            Console.WriteLine("STEP 2");
+            Console.WriteLine("SMTP CREATED");
 
-            var message = new MailMessage(
-                "rishikdatta6@gmail.com",
-                to,
-                subject,
-                body
-            );
+            var message = new MailMessage();
+            message.From = new MailAddress("rishikdatta6@gmail.com");
+            message.To.Add(to);
+            message.Subject = subject;
+            message.Body = body;
 
-            Console.WriteLine("STEP 3");
+            Console.WriteLine("SENDING...");
 
             await smtp.SendMailAsync(message);
 
-            Console.WriteLine("EMAIL SENT SUCCESS");
+            Console.WriteLine("MAIL SENT");
         }
         catch (Exception ex)
         {
-            Console.WriteLine("EMAIL FAILED:");
-            Console.WriteLine(ex.ToString());
-
+            Console.WriteLine("FULL EMAIL ERROR:");
+            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.InnerException?.Message);
             throw;
         }
     }
